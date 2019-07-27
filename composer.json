@@ -1,0 +1,18 @@
+{
+    "name": "novikov/code-kata",
+    "authors": [
+        {
+            "name": "Novikov Bogdan",
+            "email": "bogdan.novikov@socialtechnologies.io"
+        }
+    ],
+    "require": {
+        "php": "7.1",
+        "phpunit/phpunit": "^7.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src"
+        }
+    }
+}
