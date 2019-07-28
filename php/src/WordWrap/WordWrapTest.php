@@ -7,34 +7,65 @@ use PHPUnit\Framework\TestCase;
 
 class WordWrapTest extends TestCase
 {
-    public function testSingleWordWithinLimit()
+    /**
+     * @var WordWrap
+     */
+    private $wordWrap;
+
+    protected function setUp()
     {
-        $this->assertWrapped('test', 'test', 4);
+        $this->wordWrap = new WordWrap();
     }
 
-    public function testSingleWordExceedsLimitOneTime()
+    /**
+     * @param string $expected
+     * @param string $input
+     * @param int $limit
+     * @dataProvider samplesProvider
+     */
+    public function testSamples(string $expected, string $input, int $limit)
     {
-        $this->assertWrapped("super\nman", 'superman', 5);
+        $this->assertSame($expected, $this->wordWrap->wrap($input, $limit));
     }
 
-    public function testSingleWordExceedsLimitTwoTimes()
+    public function samplesProvider(): array
     {
-        $this->assertWrapped("sup\nerm\nan", 'superman', 3);
-    }
-
-    public function testSecondWordWrapped()
-    {
-        $this->assertWrapped("to\nLondon", 'to London', 6);
-    }
-
-    public function testSingleLineBrakeAndSecondWordSplit()
-    {
-        $this->assertWrapped("to\nLond\non", 'to London', 4);
+        return [
+            'one word' => [
+                'expected' => "test",
+                'input' => 'test',
+                'limit' => 7,
+            ],
+            'two words in two lines' => [
+                'expected' => "hello\nworld",
+                'input' => 'hello world',
+                'limit' => 7,
+            ],
+            'lot of words with newlines' => [
+                'expected' => "a lot of\nwords for\na single\nline",
+                'input' => 'a lot of words for a single line',
+                'limit' => 10,
+            ],
+            'lot of words with boundaries' => [
+                'expected' => "this\nis a\ntest",
+                'input' => 'this is a test',
+                'limit' => 4,
+            ],
+            'lot of words with word break' => [
+                'expected' => "a long\nword",
+                'input' => 'a longword',
+                'limit' => 6,
+            ],
+            'single word with multiple breaks' => [
+                'expected' => "areall\nylongw\nord",
+                'input' => 'areallylongword',
+                'limit' => 6,
+            ],
+        ];
     }
 
     private function assertWrapped(string $expected, string $input, int $limit): void
     {
-        $wrap = new WordWrap();
-        $this->assertSame($expected, $wrap->wrap($input, $limit));
+
     }
 }
