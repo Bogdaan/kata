@@ -23,6 +23,7 @@ class WordWrap
             $lastSpacePositionInsideLine = strrpos($line, ' ');
             if ($lastSpacePositionInsideLine !== false) {
                 $boundaryWordStart = $lineStart + $lastSpacePositionInsideLine + 1;
+
                 $boundaryWordEnd = strpos($input, ' ', $boundaryWordStart);
                 if ($boundaryWordEnd === false) {
                     $boundaryWordEnd = $inputLength;
