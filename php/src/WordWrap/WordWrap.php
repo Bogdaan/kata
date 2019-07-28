@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace Kata\WordWrap;
+
 class WordWrap
 {
     public function wrap(string $input, int $limit): string

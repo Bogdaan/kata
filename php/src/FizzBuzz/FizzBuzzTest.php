@@ -1,9 +1,11 @@
 <?php
 declare(strict_types=1);
 
+namespace Kata\FizzBuzz;
+
 use PHPUnit\Framework\TestCase;
 
-class FizzBuzTest extends TestCase
+class FizzBuzzTest extends TestCase
 {
     const FIZZ = 'Fizz';
     const BUZZ = 'Buzz';
