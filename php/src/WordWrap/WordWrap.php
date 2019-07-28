@@ -8,36 +8,42 @@ class WordWrap
     public function wrap(string $input, int $limit): string
     {
         $inputLength = strlen($input);
-        $lineStartPosition = 0;
         $lines = [];
 
-        while ($lineStartPosition < $inputLength) {
-            $nextLineStartPosition = $lineStartPosition + $limit;
+        $lineStart = 0;
+        while ($lineStart < $inputLength) {
+            $line = substr($input, $lineStart, $limit);
+            if ($this->startsWithSpace($line)) {
+                $lineStart++;
+                continue;
+            }
 
-            $charBeforeStart = substr($input, $nextLineStartPosition - 1, 1);
-            $charAtStart = substr($input, $nextLineStartPosition, 1);
-            $charAfterStart = substr($input, $nextLineStartPosition + 1, 1);
+            $nextLineStart = $lineStart + strlen($line);
 
-            if ($charBeforeStart !== false
-                && $charBeforeStart !== ' '
-                && $charAtStart !== ' '
-                && $charAfterStart !== false
-                && $charAfterStart !== ' '
-            ) {
-                // found some words in current line?
-                // yes: decrement to last space
-                // no: break the line
-                $spacePosition = strrpos($input, ' ', -$nextLineStartPosition);
-                if ($spacePosition !== false && $nextLineStartPosition - $spacePosition < $limit) {
-                    $nextLineStartPosition = $spacePosition + 1;
+            $lastSpacePositionInsideLine = strrpos($line, ' ');
+            if ($lastSpacePositionInsideLine !== false) {
+                $boundaryWordStart = $lineStart + $lastSpacePositionInsideLine + 1;
+                $boundaryWordEnd = strpos($input, ' ', $boundaryWordStart);
+                if ($boundaryWordEnd === false) {
+                    $boundaryWordEnd = $inputLength;
+                }
+
+                // move boundary word to new line
+                if ($boundaryWordEnd > $nextLineStart && $boundaryWordEnd - $boundaryWordStart <= $limit) {
+                    $line = substr($input, $lineStart, $boundaryWordStart - $lineStart);
+                    $nextLineStart = $lineStart + strlen($line);
                 }
             }
 
-            $line = substr($input, $lineStartPosition, $nextLineStartPosition - $lineStartPosition);
-            $lines[] = trim($line, ' ');
-            $lineStartPosition = $nextLineStartPosition;
+            $lines[] = trim($line);
+            $lineStart = $nextLineStart;
         }
 
         return implode(PHP_EOL, $lines);
+    }
+
+    private function startsWithSpace($line): bool
+    {
+        return substr($line, 0, 1) === ' ';
     }
 }

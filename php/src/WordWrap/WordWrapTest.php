@@ -25,7 +25,11 @@ class WordWrapTest extends TestCase
      */
     public function testSamples(string $expected, string $input, int $limit)
     {
-        $this->assertSame($expected, $this->wordWrap->wrap($input, $limit));
+        $this->assertSame(
+            $expected,
+            $this->wordWrap->wrap($input, $limit),
+            sprintf("limit: %s", $limit)
+        );
     }
 
     public function samplesProvider(): array
