@@ -63,9 +63,4 @@ class WordWrapTest extends TestCase
             ],
         ];
     }
-
-    private function assertWrapped(string $expected, string $input, int $limit): void
-    {
-
-    }
 }
