@@ -98,8 +98,7 @@ XML;
             static::MX_CELL,
             [
                 'value' => $useCase->getName(),
-                'style' => 'ellipse;whiteSpace=wrap;html=1;'
-                    . ($useCase->isCommand() ? 'fillColor=#dae8fc;strokeColor=#6c8ebf;' : ''),
+                'style' => $this->getStyle($useCase),
                 'parent' => 'root-id',
                 'vertex' => '1',
             ]
@@ -115,6 +114,19 @@ XML;
                 'as' => 'geometry',
             ]
         );
+    }
+
+    private function getStyle(UseCase $useCase): string
+    {
+        $style = 'ellipse;whiteSpace=wrap;html=1;';
+        switch (true) {
+            case $useCase->isCommand():
+                return $style . 'fillColor=#dae8fc;strokeColor=#6c8ebf;';
+            case $useCase->isQuery():
+                return $style . 'fillColor=#fff2cc;strokeColor=#d6b656;';
+            default:
+                return $style;
+        }
     }
 
     private function addChild(SimpleXMLElement $root, string $tagName, array $attributes): SimpleXMLElement
