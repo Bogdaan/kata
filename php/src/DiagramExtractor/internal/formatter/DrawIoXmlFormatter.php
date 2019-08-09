@@ -15,7 +15,9 @@ class DrawIoXmlFormatter implements FormatterInterface
 
     private const USE_CASE_WIDTH = 200;
     private const USE_CASE_HEIGHT = 70;
-    private const USE_CASE_OFFSET = 10;
+
+    private const USE_CASE_OFFSET = 20;
+    private const USE_CASE_PER_ROW = 5;
 
     private const ROOT_GROUP_WITH = 200;
     private const ROOT_GROUP_HEIGHT = 200;
@@ -103,12 +105,16 @@ XML;
                 'vertex' => '1',
             ]
         );
+
+        $columnIndex = $index % self::USE_CASE_PER_ROW;
+        $rowIndex = floor($index / self::USE_CASE_PER_ROW);
+
         $this->addChild(
             $newNode,
             static::MX_GEOMETRY,
             [
-                'x' => self::USE_CASE_OFFSET + $index * (self::USE_CASE_OFFSET + self::USE_CASE_WIDTH),
-                'y' => '1',
+                'x' => self::USE_CASE_OFFSET + $columnIndex * (self::USE_CASE_OFFSET + self::USE_CASE_WIDTH),
+                'y' => self::USE_CASE_OFFSET + $rowIndex * (self::USE_CASE_OFFSET + self::USE_CASE_HEIGHT),
                 'width' => self::USE_CASE_WIDTH,
                 'height' => self::USE_CASE_HEIGHT,
                 'as' => 'geometry',
