@@ -98,7 +98,8 @@ XML;
             static::MX_CELL,
             [
                 'value' => $useCase->getName(),
-                'style' => 'ellipse;whiteSpace=wrap;html=1;',
+                'style' => 'ellipse;whiteSpace=wrap;html=1;'
+                    . ($useCase->isCommand() ? 'fillColor=#dae8fc;strokeColor=#6c8ebf;' : ''),
                 'parent' => 'root-id',
                 'vertex' => '1',
             ]

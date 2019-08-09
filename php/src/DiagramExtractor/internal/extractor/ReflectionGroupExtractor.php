@@ -47,15 +47,21 @@ class ReflectionGroupExtractor implements GroupExtractorInterface
         $lastMatchIndex = $totalMatches - 1;
         $lastNewlineIndex = 0;
         $lines = [];
+        $cqrs = '';
+
         foreach ($matches as $index => $match) {
-            if (empty($match[1]) && $index != $lastMatchIndex) {
+            $clearLine = $match[1];
+            if (empty($clearLine) && $index != $lastMatchIndex) {
                 $lastNewlineIndex = $index;
             }
-            $lines[] = $match[1];
+            $lines[] = $clearLine;
+            if (substr($clearLine, 0, 6) === 'cqrs: ') {
+                $cqrs = substr($clearLine, 6);
+            }
         }
 
         $name = trim(implode("\n", array_slice($lines, $lastNewlineIndex)), "\n");
 
-        return new UseCase($name);
+        return new UseCase($name, $cqrs);
     }
 }
