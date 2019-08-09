@@ -22,6 +22,9 @@ class DrawIoXmlFormatter implements FormatterInterface
     private const ROOT_GROUP_WITH = 200;
     private const ROOT_GROUP_HEIGHT = 200;
 
+    private const NODE_ROOT_ID = '1';
+    private const NODE_CLASS_ID = 'root-id';
+
     /**
      * @var SimpleXMLElement
      */
@@ -54,22 +57,28 @@ XML;
 
     public function format(Group $group): string
     {
-        $this->addRootContainer($group);
+        $this->addRoot();
+        $this->addClassContainer($group);
         $this->addUseCases($group);
 
         return $this->layout->asXML();
     }
 
-    private function addRootContainer(Group $group): void
+    private function addRoot()
+    {
+        $this->addChild($this->rootElement, self::MX_CELL, ['id' => self::NODE_ROOT_ID]);
+    }
+
+    private function addClassContainer(Group $group): void
     {
         $newNode = $this->addChild(
             $this->rootElement,
             self::MX_CELL,
             [
-                'id' => 'root-id',
+                'id' => '1',
                 'value' => $group->getName(),
                 'style' => 'swimlane;',
-                'parent' => 'root-id',
+                'parent' => self::NODE_CLASS_ID,
                 'vertex' => '1',
             ]
         );
@@ -101,7 +110,7 @@ XML;
             [
                 'value' => $useCase->getName(),
                 'style' => $this->getStyle($useCase),
-                'parent' => 'root-id',
+                'parent' => self::NODE_CLASS_ID,
                 'vertex' => '1',
             ]
         );
