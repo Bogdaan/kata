@@ -6,7 +6,6 @@ namespace Kata\DiagramExtractor\samples;
 class MultipleMethods extends SingleMethod
 {
     /**
-     * cqrs: query
      * context: public_site
      * actor: user
      *

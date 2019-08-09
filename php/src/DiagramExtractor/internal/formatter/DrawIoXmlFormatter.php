@@ -107,7 +107,7 @@ XML;
             $newNode,
             static::MX_GEOMETRY,
             [
-                'x' => self::USE_CASE_OFFSET + $index * (self::USE_CASE_OFFSET + self::USE_CASE_HEIGHT),
+                'x' => self::USE_CASE_OFFSET + $index * (self::USE_CASE_OFFSET + self::USE_CASE_WIDTH),
                 'y' => '1',
                 'width' => self::USE_CASE_WIDTH,
                 'height' => self::USE_CASE_HEIGHT,

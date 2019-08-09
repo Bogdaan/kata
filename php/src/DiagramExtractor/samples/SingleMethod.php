@@ -6,7 +6,6 @@ namespace Kata\DiagramExtractor\samples;
 class SingleMethod
 {
     /**
-     * cqrs: query
      * context: public_site
      * actor: user
      *

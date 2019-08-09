@@ -23,7 +23,11 @@ class ReflectionGroupExtractor implements GroupExtractorInterface
 
         $group = new Group($reflection->getName(), []);
         foreach ($reflection->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
-            $useCase = $this->extractFrom($method->getDocComment());
+            $phpDoc = $method->getDocComment();
+            if (empty($phpDoc)) {
+                continue;
+            }
+            $useCase = $this->extractFrom($phpDoc);
             if (empty($useCase)) {
                 continue;
             }
