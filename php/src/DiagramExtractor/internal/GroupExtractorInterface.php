@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Kata\XmlExtractor\internal;
+namespace Kata\DiagramExtractor\internal;
 
-use Kata\XmlExtractor\internal\valueObjects\Group;
+use Kata\DiagramExtractor\internal\valueObjects\Group;
 
 interface GroupExtractorInterface
 {

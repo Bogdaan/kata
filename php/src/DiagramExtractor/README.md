@@ -1,4 +1,4 @@
-# Xml extraction
+# Diagram extraction
 
 Create function, witch converts php source code class with 
 methods (that have comments) to xml document, that contains use-case

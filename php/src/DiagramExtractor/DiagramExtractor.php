@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Kata\XmlExtractor;
+namespace Kata\DiagramExtractor;
 
-use Kata\XmlExtractor\internal\FormatterInterface;
-use Kata\XmlExtractor\internal\GroupExtractorInterface;
+use Kata\DiagramExtractor\internal\FormatterInterface;
+use Kata\DiagramExtractor\internal\GroupExtractorInterface;
 
-class XmlExtractor
+class DiagramExtractor
 {
     /**
      * @var GroupExtractorInterface

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Kata\XmlExtractor\internal\valueObjects;
+namespace Kata\DiagramExtractor\internal\valueObjects;
 
 class UseCase
 {

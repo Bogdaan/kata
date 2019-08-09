@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Kata\XmlExtractor\internal\formatter;
+namespace Kata\DiagramExtractor\internal\formatter;
 
-use Kata\XmlExtractor\internal\valueObjects\Group;
-use Kata\XmlExtractor\internal\FormatterInterface;
-use Kata\XmlExtractor\internal\valueObjects\UseCase;
+use Kata\DiagramExtractor\internal\valueObjects\Group;
+use Kata\DiagramExtractor\internal\FormatterInterface;
+use Kata\DiagramExtractor\internal\valueObjects\UseCase;
 use SimpleXMLElement;
 
 class DrawIoXmlFormatter implements FormatterInterface

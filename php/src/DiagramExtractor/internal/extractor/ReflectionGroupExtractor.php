@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Kata\XmlExtractor\internal\extractor;
+namespace Kata\DiagramExtractor\internal\extractor;
 
-use Kata\XmlExtractor\internal\GroupExtractorInterface;
-use Kata\XmlExtractor\internal\valueObjects\Group;
-use Kata\XmlExtractor\internal\valueObjects\UseCase;
+use Kata\DiagramExtractor\internal\GroupExtractorInterface;
+use Kata\DiagramExtractor\internal\valueObjects\Group;
+use Kata\DiagramExtractor\internal\valueObjects\UseCase;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionMethod;

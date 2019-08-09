@@ -1,24 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace Kata\XmlExtractor;
+namespace Kata\DiagramExtractor;
 
-use Kata\XmlExtractor\internal\extractor\ReflectionGroupExtractor;
-use Kata\XmlExtractor\internal\formatter\DrawIoXmlFormatter;
-use Kata\XmlExtractor\samples\EmptyClass;
-use Kata\XmlExtractor\samples\SingleMethod;
+use Kata\DiagramExtractor\internal\extractor\ReflectionGroupExtractor;
+use Kata\DiagramExtractor\internal\formatter\DrawIoXmlFormatter;
+use Kata\DiagramExtractor\samples\EmptyClass;
+use Kata\DiagramExtractor\samples\SingleMethod;
 use PHPUnit\Framework\TestCase;
 
-class DrawIoXmlExtractorTest extends TestCase
+class DrawIoDiagramExtractorTest extends TestCase
 {
     /**
-     * @var XmlExtractor
+     * @var DiagramExtractor
      */
     private $drawIoExtractor;
 
     protected function setUp()
     {
-        $this->drawIoExtractor = new XmlExtractor(new ReflectionGroupExtractor(), new DrawIoXmlFormatter());
+        $this->drawIoExtractor = new DiagramExtractor(new ReflectionGroupExtractor(), new DrawIoXmlFormatter());
     }
 
     public function testExtractFromClassWithoutMethods(): void

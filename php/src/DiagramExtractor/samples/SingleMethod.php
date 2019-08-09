@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Kata\XmlExtractor\samples;
+namespace Kata\DiagramExtractor\samples;
 
 class SingleMethod
 {
