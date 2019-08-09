@@ -13,6 +13,13 @@ class DrawIoXmlFormatter implements FormatterInterface
     private const MX_CELL = 'mxCell';
     private const MX_GEOMETRY = 'mxGeometry';
 
+    private const USE_CASE_WIDTH = 200;
+    private const USE_CASE_HEIGHT = 70;
+    private const USE_CASE_OFFSET = 10;
+
+    private const ROOT_GROUP_WITH = 200;
+    private const ROOT_GROUP_HEIGHT = 200;
+
     /**
      * @var SimpleXMLElement
      */
@@ -45,13 +52,13 @@ XML;
 
     public function format(Group $group): string
     {
-        $this->createRoot($group);
-        $this->createUseCases($group);
+        $this->addRootGroup($group);
+        $this->addUseCases($group);
 
         return $this->layout->asXML();
     }
 
-    private function createRoot(Group $group): void
+    private function addRootGroup(Group $group): void
     {
         $newNode = $this->addChild(
             $this->rootElement,
@@ -70,21 +77,21 @@ XML;
             [
                 'x' => '0',
                 'y' => '0',
-                'width' => '200',
-                'height' => '200',
+                'width' => self::ROOT_GROUP_WITH,
+                'height' => self::ROOT_GROUP_HEIGHT,
                 'as' => 'geometry',
             ]
         );
     }
 
-    private function createUseCases(Group $group): void
+    private function addUseCases(Group $group): void
     {
-        foreach ($group->getUseCases() as $useCase) {
-            $this->createUseCase($useCase);
+        foreach ($group->getUseCases() as $index => $useCase) {
+            $this->addUseCase($index, $useCase);
         }
     }
 
-    private function createUseCase(UseCase $useCase): void
+    private function addUseCase(int $index, UseCase $useCase): void
     {
         $newNode = $this->addChild(
             $this->rootElement,
@@ -100,10 +107,10 @@ XML;
             $newNode,
             static::MX_GEOMETRY,
             [
-                'x' => '1',
+                'x' => self::USE_CASE_OFFSET + $index * (self::USE_CASE_OFFSET + self::USE_CASE_HEIGHT),
                 'y' => '1',
-                'width' => '200',
-                'height' => '70',
+                'width' => self::USE_CASE_WIDTH,
+                'height' => self::USE_CASE_HEIGHT,
                 'as' => 'geometry',
             ]
         );
@@ -113,7 +120,7 @@ XML;
     {
         $node = $root->addChild($tagName, null);
         foreach ($attributes as $name => $value) {
-            $node->addAttribute($name, $value);
+            $node->addAttribute($name, (string)$value);
         }
 
         return $node;
