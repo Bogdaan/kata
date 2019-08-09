@@ -51,3 +51,6 @@ Constraints:
 - xml layout represented as `diagram` and `mxGraphModel` nodes
 - each method represented `mxCell` node with attributes: `value, parrent, id`
 - each `mxCell`  has `mxGeometry` child tag with attributes: `width, height, x, y`
+- query methods has attribute `style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;"`
+- command methods has attribute `style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;"`
+- request methods has attribute `style="ellipse;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;"`

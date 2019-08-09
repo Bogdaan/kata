@@ -1,9 +1,9 @@
 {
-    "name": "novikov/code-kata",
+    "name": "bogdaan/code-kata",
     "authors": [
         {
             "name": "Novikov Bogdan",
-            "email": "bogdan.novikov@socialtechnologies.io"
+            "email": "hcbogdan@gmail.com"
         }
     ],
     "require": {

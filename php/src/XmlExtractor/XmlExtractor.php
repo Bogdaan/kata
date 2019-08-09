@@ -5,6 +5,7 @@ namespace Kata\XmlExtractor;
 
 use InvalidArgumentException;
 use ReflectionClass;
+use ReflectionException;
 use ReflectionMethod;
 use SimpleXMLElement;
 
@@ -38,6 +39,11 @@ class XmlExtractor
         $this->rootElement = reset($nodes);
     }
 
+    /**
+     * @param string $className
+     * @return string
+     * @throws ReflectionException
+     */
     public function extract(string $className): string
     {
         $reflection = new ReflectionClass($className);
