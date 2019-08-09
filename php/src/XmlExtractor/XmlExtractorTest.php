@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace Kata\XmlExtractor;
 
-use InvalidArgumentException;
+use Kata\XmlExtractor\internal\extractor\ReflectionGroupExtractor;
+use Kata\XmlExtractor\internal\formatter\DrawIoXmlFormatter;
 use Kata\XmlExtractor\samples\EmptyClass;
 use Kata\XmlExtractor\samples\SingleMethod;
 use PHPUnit\Framework\TestCase;
@@ -37,60 +38,22 @@ XML;
         $this->assertExtracted($xml, $sourceClass);
     }
 
-    public function testInvalidLayout(): void
-    {
-        $layout = <<<LAYOUT
-<?xml version="1.0" encoding="UTF-8"?>
-<mxfile version="11.1.2" type="google" compressed="false">
-  <diagram id="use-case" name="use-case diagram">
-    <mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="1000" math="0" shadow="0">
-    </mxGraphModel>
-  </diagram>
-</mxfile>
-LAYOUT;
-
-        $this->expectException(InvalidArgumentException::class);
-
-        (new XmlExtractor($layout));
-    }
-
     private function assertExtracted(string $expectedXml, string $sourceClass): void
     {
-        $layout = $this->createXml();
-        $expectedXmlWithLayout = $this->createXml($expectedXml);
+        $extractor = new XmlExtractor(new ReflectionGroupExtractor(), new DrawIoXmlFormatter());
 
-        $this->assertSame(
-            $this->trimNewlinesAndWhitespaces(
-                $expectedXmlWithLayout
-            ),
-            $this->trimNewlinesAndWhitespaces(
-                (new XmlExtractor($layout))->extract($sourceClass)
-            )
+        $this->assertContains(
+            $this->normalize($expectedXml),
+            $this->normalize($extractor->extract($sourceClass))
         );
     }
 
-    private function createXml(string $body = ''): string
-    {
-        return <<<LAYOUT
-<?xml version="1.0" encoding="UTF-8"?>
-<mxfile version="11.1.2" type="google" compressed="false">
-  <diagram id="use-case" name="use-case diagram">
-    <mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="1000" math="0" shadow="0">
-      <root>
-      {$body}
-      </root>
-    </mxGraphModel>
-  </diagram>
-</mxfile>
-LAYOUT;
-    }
-
-    private function trimNewlinesAndWhitespaces(string $multiline): string
+    private function normalize(string $multilineText): string
     {
         return preg_replace(
             "/\s+/",
             "",
-            preg_replace("/\n/", "", $multiline)
+            preg_replace("/\n/", "", $multilineText)
         );
     }
 }

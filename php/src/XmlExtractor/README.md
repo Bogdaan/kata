@@ -11,7 +11,6 @@ class Profile
     /**
      * cqrs: query
      * context: public_site
-     * actor: user
      *
      * api:
      * @see \frontend\controllers\ProfileController::actionName
@@ -54,3 +53,4 @@ Constraints:
 - query methods has attribute `style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;"`
 - command methods has attribute `style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;"`
 - request methods has attribute `style="ellipse;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;"`
+- each new use-case in diagram have offset (attributes `dx, dy`)
