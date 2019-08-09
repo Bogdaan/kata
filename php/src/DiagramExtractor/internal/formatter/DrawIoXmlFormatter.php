@@ -54,13 +54,13 @@ XML;
 
     public function format(Group $group): string
     {
-        $this->addRootGroup($group);
+        $this->addRootContainer($group);
         $this->addUseCases($group);
 
         return $this->layout->asXML();
     }
 
-    private function addRootGroup(Group $group): void
+    private function addRootContainer(Group $group): void
     {
         $newNode = $this->addChild(
             $this->rootElement,
@@ -69,7 +69,7 @@ XML;
                 'id' => 'root-id',
                 'value' => $group->getName(),
                 'style' => 'swimlane;',
-                'parent' => '1',
+                'parent' => 'root-id',
                 'vertex' => '1',
             ]
         );
