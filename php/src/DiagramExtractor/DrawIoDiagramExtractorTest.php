@@ -6,6 +6,7 @@ namespace Kata\DiagramExtractor;
 use Kata\DiagramExtractor\internal\extractor\ReflectionGroupExtractor;
 use Kata\DiagramExtractor\internal\formatter\DrawIoXmlFormatter;
 use Kata\DiagramExtractor\samples\EmptyClass;
+use Kata\DiagramExtractor\samples\MultipleMethods;
 use Kata\DiagramExtractor\samples\SingleMethod;
 use PHPUnit\Framework\TestCase;
 
@@ -39,6 +40,24 @@ XML;
         $expected = <<<XML
         <mxCell id="root-id" value="{$sourceClass}" style="swimlane;" parent="1" vertex="1">
           <mxGeometry x="0" y="0" width="200" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell value="Get string with current unix time" style="ellipse;whiteSpace=wrap;html=1;" parent="root-id" vertex="1">
+          <mxGeometry x="1" y="1" width="200" height="70" as="geometry"/>
+        </mxCell>
+XML;
+
+        $this->assertExtracted($expected, $sourceClass);
+    }
+
+    public function testExtractFromClassWithMultipleMethodsWithInheritance(): void
+    {
+        $sourceClass = MultipleMethods::class;
+        $expected = <<<XML
+        <mxCell id="root-id" value="{$sourceClass}" style="swimlane;" parent="1" vertex="1">
+          <mxGeometry x="0" y="0" width="200" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell value="Get random number" style="ellipse;whiteSpace=wrap;html=1;" parent="root-id" vertex="1">
+          <mxGeometry x="1" y="1" width="200" height="70" as="geometry"/>
         </mxCell>
         <mxCell value="Get string with current unix time" style="ellipse;whiteSpace=wrap;html=1;" parent="root-id" vertex="1">
           <mxGeometry x="1" y="1" width="200" height="70" as="geometry"/>
