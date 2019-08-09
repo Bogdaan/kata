@@ -5,8 +5,9 @@ namespace Kata\DiagramExtractor\internal\valueObjects;
 
 class UseCase
 {
-    private const COMMAND = 'command';
-    private const QUERY = 'query';
+    public const COMMAND = 'command';
+    public const QUERY = 'query';
+    public const REQUEST = 'request';
 
     /**
      * @var string
@@ -29,13 +30,8 @@ class UseCase
         return $this->name;
     }
 
-    public function isCommand(): bool
+    public function getCqrs(): string
     {
-        return $this->cqrs === self::COMMAND;
-    }
-
-    public function isQuery(): bool
-    {
-        return $this->cqrs === self::QUERY;
+        return $this->cqrs;
     }
 }

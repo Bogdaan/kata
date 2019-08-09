@@ -9,6 +9,7 @@ use Kata\DiagramExtractor\samples\CommandMethod;
 use Kata\DiagramExtractor\samples\EmptyClass;
 use Kata\DiagramExtractor\samples\MultipleMethods;
 use Kata\DiagramExtractor\samples\QueryMethod;
+use Kata\DiagramExtractor\samples\RequestMethod;
 use Kata\DiagramExtractor\samples\SingleMethod;
 use PHPUnit\Framework\TestCase;
 
@@ -79,7 +80,6 @@ class DrawIoDiagramExtractorTest extends TestCase
         $this->assertExtractedAs($xpath, $sourceClass);
     }
 
-
     public function testExtractSingleQuery(): void
     {
         $sourceClass = QueryMethod::class;
@@ -87,6 +87,21 @@ class DrawIoDiagramExtractorTest extends TestCase
             sprintf(
                 '//root/mxCell[@value="%s"][@parent="root-id"]'
                 . '[@style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;"]'
+                . '/mxGeometry',
+                'Update time'
+            ),
+        ];
+
+        $this->assertExtractedAs($xpath, $sourceClass);
+    }
+
+    public function testExtractSingleRequest(): void
+    {
+        $sourceClass = RequestMethod::class;
+        $xpath = [
+            sprintf(
+                '//root/mxCell[@value="%s"][@parent="root-id"]'
+                . '[@style="ellipse;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;"]'
                 . '/mxGeometry',
                 'Update time'
             ),

@@ -119,11 +119,13 @@ XML;
     private function getStyle(UseCase $useCase): string
     {
         $style = 'ellipse;whiteSpace=wrap;html=1;';
-        switch (true) {
-            case $useCase->isCommand():
+        switch ($useCase->getCqrs()) {
+            case UseCase::COMMAND:
                 return $style . 'fillColor=#dae8fc;strokeColor=#6c8ebf;';
-            case $useCase->isQuery():
+            case UseCase::QUERY:
                 return $style . 'fillColor=#fff2cc;strokeColor=#d6b656;';
+            case UseCase::REQUEST:
+                return $style . 'fillColor=#f5f5f5;strokeColor=#666666;';
             default:
                 return $style;
         }
