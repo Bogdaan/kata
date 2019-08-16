@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectionsReduction", "DirectionsReduction.csproj", "{E82EC95F-2D07-42D1-9A87-02D8760F3553}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectionsReductionTest", "DirectionsReductionTest\DirectionsReductionTest.csproj", "{CC44F841-703D-4AA5-B13D-437D48D96A0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E82EC95F-2D07-42D1-9A87-02D8760F3553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E82EC95F-2D07-42D1-9A87-02D8760F3553}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E82EC95F-2D07-42D1-9A87-02D8760F3553}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E82EC95F-2D07-42D1-9A87-02D8760F3553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC44F841-703D-4AA5-B13D-437D48D96A0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC44F841-703D-4AA5-B13D-437D48D96A0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC44F841-703D-4AA5-B13D-437D48D96A0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC44F841-703D-4AA5-B13D-437D48D96A0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
