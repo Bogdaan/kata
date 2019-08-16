@@ -5,6 +5,7 @@ namespace Kata\Foxminded\Bridge;
 
 use Kata\Foxminded\Bridge\dishes\Borscht;
 use Kata\Foxminded\Bridge\dishes\Pelmeni;
+use Kata\Foxminded\Bridge\kitchen\ItalianKitchen;
 use Kata\Foxminded\Bridge\kitchen\UkrainianKitchen;
 
 class Client
@@ -14,10 +15,7 @@ class Client
         $uaBorscht = new UkrainianKitchen(new Borscht());
         $uaBorscht->cook();
 
-        $uaPelmeni = new UkrainianKitchen(new Pelmeni());
+        $uaPelmeni = new ItalianKitchen(new Pelmeni());
         $uaPelmeni->cook();
     }
 }
-
-require '../../../vendor/autoload.php';
-(new Client())->main();
