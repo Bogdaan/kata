@@ -1,0 +1,3 @@
+# Improvements
+
+- Mediator GOF pattern
