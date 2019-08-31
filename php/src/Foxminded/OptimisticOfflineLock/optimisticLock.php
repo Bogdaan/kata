@@ -19,3 +19,4 @@ fclose($handle);
 echo "> rename " . $args . PHP_EOL;
 rename(getFileName(1), getFileName(2));
 
+echo "done " . $args . PHP_EOL;
